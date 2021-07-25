@@ -1,9 +1,17 @@
-import Component from "../core/Component.js";
+export default class Title {
+  constructor($target, title) {
+    this.$target = $target;
+    this.title = title ?? "Team";
+    this.render();
+  }
 
-export default class Title extends Component {
+  setTitle(newTitle) {
+    this.title = newTitle;
+  }
+
   render() {
     this.$target.innerHTML = `
-      <span><strong>Hi</strong>'s Todo Lists</span>
+      <span><strong>${this.title}</strong>'s Todo Lists</span>
     `;
   }
 }

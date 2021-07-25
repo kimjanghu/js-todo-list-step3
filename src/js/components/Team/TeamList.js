@@ -21,6 +21,8 @@ export default class TeamList extends Component {
 
   async onClickTeamList({ target }) {
     checkClassList(target, "add-team-button") && (await this.addTeam());
+
+    checkClassList(target.closest(".team-card-container"), "team-card-container") && this.props.routeTo;
   }
 
   async addTeam() {

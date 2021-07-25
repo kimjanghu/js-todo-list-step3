@@ -42,6 +42,7 @@ const KEY_NAME = Object.freeze({
 
 const PATH_NAME = Object.freeze({
   MAIN_PATH: "/",
+  KANBAN_PATH: "/kanban.html",
 });
 
 const CONSTRAINTS = 2;
