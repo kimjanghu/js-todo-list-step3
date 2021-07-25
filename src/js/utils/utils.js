@@ -1,5 +1,5 @@
-const $ = (selector, element = document) => element.querySelector(selector);
-const $$ = (selector, element = document) => element.querySelector(selector);
+const $ = (selector, el = document) => el.querySelector(selector);
+const $$ = (selector, el = document) => el.querySelector(selector);
 
 const Alert = {
   confirmAlert: (message) => confirm(message),
@@ -10,8 +10,4 @@ const checkClassList = (target, className) => {
   return target.classList.contains(className);
 };
 
-const bindEvent = (element, event, callback) => {
-  return element.addEventListener(event, callback);
-};
-
-export default { $, $$, Alert, checkClassList, bindEvent };
+export { $, $$, Alert, checkClassList };

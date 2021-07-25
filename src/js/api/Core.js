@@ -1,7 +1,7 @@
 export default class Core {
-  messageForm(methods, options = {}) {
+  messageForm(method, options = {}) {
     return {
-      methods,
+      method,
       headers: {
         "Content-Type": "application/json",
       },

@@ -1,4 +1,4 @@
-import Core from "./Core";
+import Core from "./Core.js";
 
 const API_BASE_URL = "https://js-todo-list-9ca3a.df.r.appspot.com/api";
 
@@ -6,24 +6,28 @@ const URL = Object.freeze({
   TEAM: `${API_BASE_URL}/teams`,
 });
 
-export default class Api {
+class Api {
   constructor() {
     this.api = new Core();
   }
 
   async postTeam(payload) {
-    return this.api.post(`${URL.TEAM}`, payload);
+    const body = JSON.stringify(payload);
+    return await this.api.post(`${URL.TEAM}`, { body });
   }
 
   async getTeam(teamId) {
-    return this.api.get(`${URL.TEAM}/${teamId}`);
+    return await this.api.get(`${URL.TEAM}/${teamId}`);
   }
 
   async getTeamList() {
-    return this.api.get(`${URL.TEAM}`);
+    return await this.api.get(`${URL.TEAM}`);
   }
 
   async deleteTeam(teamId) {
-    return this.api.get(`${URL.TEAM}/${teamId}`);
+    return await this.api.delete(`${URL.TEAM}/${teamId}`);
   }
 }
+
+const api = new Api();
+export default api;
