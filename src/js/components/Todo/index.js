@@ -2,7 +2,6 @@ import api from "../../api/api.js";
 import MemberStore from "../../store/Member/index.js";
 import TodoMemberList from "./TodoMemberList.js";
 import { $ } from "../../utils/utils.js";
-import TodoList from "./TodoList/index.js";
 import TodoMemberAddButton from "./TodoAddMemberButton.js";
 
 export default async function Todo(props) {

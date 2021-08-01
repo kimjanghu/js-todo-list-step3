@@ -5,6 +5,7 @@ const API_BASE_URL = "https://js-todo-list-9ca3a.df.r.appspot.com/api";
 const URL = Object.freeze({
   TEAM: `${API_BASE_URL}/teams`,
   MEMBER: "/members",
+  ITEMS: "/items",
 });
 
 class Api {
@@ -32,6 +33,12 @@ class Api {
   async postTeamMember(teamId, payload) {
     const body = JSON.stringify(payload);
     return await this.api.post(`${URL.TEAM}/${teamId}${URL.MEMBER}`, { body });
+  }
+
+  // 	/api/teams/:teamId/members/:memberId/items
+  async postTodo(teamId, memberId, payload) {
+    const body = JSON.stringify(payload);
+    return await this.api.post(`${URL.TEAM}/${teamId}${URL.MEMBER}/${memberId}${URL.ITEMS}`, { body });
   }
 }
 

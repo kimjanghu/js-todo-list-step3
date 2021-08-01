@@ -7,4 +7,8 @@ export default class TodoStore extends Subject {
     this.memberName = memberName ?? "";
     this.todoId = todoId ?? "";
   }
+
+  addTodo(todo) {
+    this.todoList = [...this.todoList, todo];
+  }
 }

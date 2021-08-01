@@ -8,16 +8,24 @@ import TodoTitle from "./TodoTitle.js";
 
 import { $ } from "../../../utils/utils.js";
 
-export default function TodoListView(todoList = { _id: "", name: "", todoList: [] }) {
-  const { _id, name, todos } = todoList;
+export default function TodoListView($target, todoList = { _id: "", name: "", todoList: [] }, teamId) {
+  const { _id, name, todoList: todos } = todoList;
   const todoStore = new TodoStore(todos, name, _id);
   console.log(todoList);
-  const todoTitleView = new TodoTitle($("#member-title"), todoStore);
-  new TodoInput($(".input-container"), todoStore);
-  const todoListView = new TodoList($(".todo-list"), todoStore);
-  const todoCountView = new TodoCount($(".todo-count"), todoStore);
-  const todoFilterView = new TodoFilter($(".filters"), todoStore);
-  new TodoClearButton($(".clear-completed"), todoStore);
+  const todoTitleView = new TodoTitle($(".member-title", $target), todoStore);
+  new TodoInput($(".input-container", $target), todoStore, {
+    teamId,
+  });
+  const todoListView = new TodoList(
+    $(".todo-list", $target, {
+      teamId,
+    }),
+    todoStore,
+  );
+  const todoCountView = new TodoCount($(".todo-count", $target), todoStore);
+  const todoFilterView = new TodoFilter($(".filters", $target), todoStore);
+  new TodoClearButton($(".clear-completed", $target), todoStore);
 
   [todoTitleView, todoListView, todoCountView, todoFilterView].forEach((component) => todoStore.subscribe(component));
+  return $target.outerHTML;
 }
