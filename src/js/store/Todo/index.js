@@ -1,9 +1,8 @@
 import Subject from "../Subject.js";
 
-export default class TodoStore extends Subject {
-  constructor(todoList, selectedTeamName) {
+export default class teamStore extends Subject {
+  constructor(todoList) {
     super();
     this.todoList = todoList ?? [];
-    this.selectedTeamName = selectedTeamName ?? "";
   }
 }

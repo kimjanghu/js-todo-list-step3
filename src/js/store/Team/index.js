@@ -4,7 +4,6 @@ export default class teamStore extends Subject {
   constructor(team) {
     super();
     this.team = team ?? [];
-    console.log(team);
   }
 
   addTeam(team) {
