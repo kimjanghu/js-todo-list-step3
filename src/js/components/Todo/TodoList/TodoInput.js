@@ -6,12 +6,14 @@ import { $ } from "../../../utils/utils.js";
 export default class TodoInput extends Component {
   render() {
     this.$target.innerHTML = `
-      <input data-input-id=${this.store.todoId} class="new-todo" placeholder="할 일을 입력해주세요." autofocus />
+      <section class="input-container">
+        <input data-input-id=${this.store.todoId} class="new-todo" placeholder="할 일을 입력해주세요." autofocus />
+      </section>
     `;
   }
 
   bindEvents() {
-    $(".todoapp-list-container").addEventListener("keyup", (e) => this.onKeyUpInput(e));
+    $(".todoapp-list-container").addEventListener("keypress", (e) => this.onKeyUpInput(e));
   }
 
   async onKeyUpInput({ key, target }) {

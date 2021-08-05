@@ -9,6 +9,7 @@ export default class TodoStore extends Subject {
   }
 
   addTodo(todo) {
+    console.log(1);
     this.todoList = [...this.todoList, todo];
   }
 }
