@@ -12,7 +12,7 @@ export default async function Todo(props) {
   const memberStore = new MemberStore(members, _id, name);
 
   const todoMemberListView = new TodoMemberList($(".todoapp-list-container"), memberStore);
-  const todoAddMemberButtonView = new TodoMemberAddButton($(".add-user-button-container"), memberStore);
+  // const todoAddMemberButtonView = new TodoMemberAddButton($(".add-user-button-container"), memberStore);
 
   [todoMemberListView].forEach((component) => memberStore.subscribe(component));
 

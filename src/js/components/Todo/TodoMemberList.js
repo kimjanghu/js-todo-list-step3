@@ -1,15 +1,24 @@
 import Component from "../../core/Component.js";
 import TodoMemberAddButton from "./TodoAddMemberButton.js";
-import { checkClassList } from "../../utils/utils.js";
 import TodoListView from "./TodoList/index.js";
+import api from "../../api/api.js";
 
 export default class TodoMemberList extends Component {
   render() {
-    console.log(this.store.teamTodoList);
+    this.$target.innerHTML = "";
     const todoMemberList = this.store.teamTodoList
       .map((todoList) => TodoListView(this.createDOM(todoList), todoList, this.store.teamId))
       .join("");
-    this.$target.insertAdjacentHTML("afterbegin", todoMemberList);
+    this.$target.innerHTML = todoMemberList;
+    new TodoMemberAddButton(this.$target, null, {
+      addTodoMember: this.addTodoMember.bind(this),
+    });
+  }
+
+  async addTodoMember(name) {
+    const { members } = await api.postTeamMember(this.store.teamId, { name });
+    this.store.setNewTeamTodoList(members);
+    this.store.notifyObservers();
   }
 
   createDOM(todoList) {

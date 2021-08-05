@@ -5,10 +5,12 @@ import { $, Alert } from "../../utils/utils.js";
 
 export default class TodoMemberAddButton extends Component {
   render() {
-    this.$target.innerHTML = `
-      <button id="add-user-button" class="ripple">
-        <span class="material-icons">add</span>
-      </button>
+    this.$target.innerHTML += `
+      <li class="add-user-button-container">
+        <button id="add-user-button" class="ripple">
+          <span class="material-icons">add</span>
+        </button>
+      </li>
     `;
   }
 
@@ -18,12 +20,6 @@ export default class TodoMemberAddButton extends Component {
 
   onClickAddTodoMember() {
     const memberName = Alert.promtAlert(ALERT_MESSAGE.CREATE);
-    memberName && this.addTodoMember(memberName);
-  }
-
-  async addTodoMember(name) {
-    const { members } = await api.postTeamMember(this.store.teamId, { name });
-    this.store.setNewTeamTodoList(members);
-    this.store.notifyObservers();
+    memberName && this.props.addTodoMember(memberName);
   }
 }
